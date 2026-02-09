@@ -1,5 +1,6 @@
 import pandas as pd
 import joblib
+import os
 from sklearn.model_selection import train_test_split
 
 
@@ -38,9 +39,6 @@ def split_feature_target(
     return X, y
 
 
-from sklearn.model_selection import train_test_split
-
-
 def split_train_test(
     X: pd.DataFrame, y: pd.Series, test_size: float, random_state: int | None = None
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
@@ -77,7 +75,13 @@ def serialize_data(data: pd.DataFrame | pd.Series, path: str):
     :param path: File path.
     :type path: str
     """
-    joblib.dump(data, filename=path)
+    parent_dir = os.path.dirname(path)
+
+    if parent_dir:
+        os.makedirs(parent_dir, exist_ok=True)
+
+    joblib.dump(data, filename=path, compress=3)
+    print(f"Data serialized on {path}.")
 
 
 def deserialize_data(path: str) -> pd.DataFrame | pd.Series:

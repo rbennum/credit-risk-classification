@@ -1,1 +1,1 @@
-{"threshold": 0.5151515151515152, "metric_value": 0.896417129301279, "metric_name": "f1_score", "model_name": "RandomForestClassifier"}
+{"threshold": 0.19191919191919193, "recall": 0.8816975046343924, "precision": 0.850045450747342, "f1_score": 0.8641783641160949, "metric_value": 0.8816975046343924, "model_name": "XGBClassifier"}
